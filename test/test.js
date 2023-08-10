@@ -11,6 +11,6 @@ const regex = Pattern(_ => _
         .anything().oneOrMore()
     )
     .endOfLine()
-)
+);
 
 console.log(regex.toRegExp())
