@@ -16,7 +16,7 @@ const Pattern = require("@essentialib/pattern");
 // same as /-?(\d+)/
 const isInteger = Pattern(_ => _
     .maybe('-')  
-    .capture(_ => _
+    .capture(g1 => g1
         .digit().oneOrMore()
     )
 );
