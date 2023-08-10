@@ -1,6 +1,6 @@
 {
   "name": "@essentialib/pattern",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha",
   "description": "Easy handling of JavaScript regular expressions.",
   "main": "src/index.js",
   "scripts": {
