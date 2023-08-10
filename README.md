@@ -10,3 +10,16 @@ npm install @essentialib/pattern
 ```js
 const Pattern = require("@essentialib/pattern");
 ```
+
+## example
+```js
+// same as /-?(\d+)/
+const isInteger = Pattern(_ => _
+    .maybe('-')  
+    .capture(_ => _
+        .digit().oneOrMore()
+    )
+);
+
+console.log(isInteger.test('-34'));  // true
+```
