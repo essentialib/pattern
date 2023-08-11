@@ -1,11 +1,14 @@
 {
   "name": "@essentialib/pattern",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-beta",
   "description": "Easy handling of JavaScript regular expressions.",
   "main": "src/index.js",
   "scripts": {
     "test": "node test/test.js"
   },
+  "files": [
+    "src/index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/essentialib/pattern.git"

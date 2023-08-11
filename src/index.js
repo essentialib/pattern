@@ -212,6 +212,24 @@ PatternBuilder.prototype = {
     },
 
     /**
+     * @return {PatternBuilder}
+     * @example
+     * linebreak() -> /(?:\r\n|\r|\n)/
+     */
+    linebreak() {
+        return add(this, '(?:\\r\\n|\\r|\\n)');
+    },
+
+    /**
+     * @return {PatternBuilder}
+     * @example
+     * br() -> /(?:\r\n|\r|\n)/
+     */
+    br() {
+        return this.linebreak();
+    },
+
+    /**
      * @param {string|function(PatternBuilder): PatternBuilder} item
      * @return {PatternBuilder}
      * @example
@@ -221,7 +239,9 @@ PatternBuilder.prototype = {
     then(item) {
         if (typeof item === 'string') {
             let escapes = ['[', ']', '.', '|', '*', '?', '+', '(', ')', '{', '}', '^', '$', '\\'];
-            return add(this, '(?:' + (escapes.includes(item) ? '\\' : '') + item + ')');
+            let escaped = item.split('').map(c => (escapes.includes(c) ? '\\' : '') + c).join('');
+
+            return add(this, '(?:' + escaped + ')');
         } else if (typeof item === 'function') {
             return add(this, item(new PatternBuilder()));
         } else {
@@ -243,24 +263,6 @@ PatternBuilder.prototype = {
     /**
      * @return {PatternBuilder}
      * @example
-     * linebreak() -> /(?:\r\n|\r|\n)/
-     */
-    linebreak() {
-        return this.then('\\r\\n|\\r|\\n');
-    },
-
-    /**
-     * @return {PatternBuilder}
-     * @example
-     * br() -> /(?:\r\n|\r|\n)/
-     */
-    br() {
-        return this.linebreak();
-    },
-
-    /**
-     * @return {PatternBuilder}
-     * @example
      * anything() -> /./
      */
     anything() {
@@ -268,7 +270,7 @@ PatternBuilder.prototype = {
     },
 
     /**
-     * @param {...string|string[2]} arguments - characters
+     * @param {...string|string[2]} arguments
      * @return {PatternBuilder}
      * @example
      * anythingBut('abc') -> /[^abc]/
@@ -293,7 +295,7 @@ PatternBuilder.prototype = {
     },
 
     /**
-     * @param {...string|string[2]} arguments - characters
+     * @param {...string|string[2]} arguments
      * @return {PatternBuilder}
      * @example
      * anythingOf('abc') -> /[abc]/
@@ -428,7 +430,7 @@ PatternBuilder.prototype = {
         add(this, '(' + (item != null ? '?<' + item + '>' : '') , pattern(new PatternBuilder()), ')');
 
         return this;
-    }
+    },
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -450,7 +452,7 @@ PatternExp.prototype = {
      * @return {string}
      */
     toString() {
-        return this.regexp.source();
+        return this.regexp.source;
     },
 
     /**
