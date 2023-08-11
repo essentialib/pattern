@@ -23,3 +23,4 @@ const isInteger = Pattern(_ => _
 
 console.log(isInteger.test('-34'));  // true
 ```
+See the [wiki](https://github.com/essentialib/pattern/wiki) for more information
