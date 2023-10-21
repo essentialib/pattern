@@ -13,4 +13,10 @@ const regex = Pattern(_ => _
     .endOfLine()
 );
 
+const regex2 = Pattern(_ => _
+    .startOfLine()
+    .anythingOf('a', 'b', 'c')
+    .endOfLine()
+)
+
 console.log(regex.toRegExp())

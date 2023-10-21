@@ -285,6 +285,7 @@ PatternBuilder.prototype = {
                 }
                 return e.join('-');
             } else if (typeof e === 'string') {
+                // todo: anythingBut('abc', 'bc', 'cd') -> /not (?:abc|bc|cd)/ 이거 어떻게 하지
                 return (e === '-' ? '\\' : '') + e;
             } else {
                 throw new TypeError('anythingBut(...arguments): "arguments" accepts only string or array');
